@@ -1,12 +1,66 @@
-# React + Vite
+# BlueVotes - Decentralized Voting App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, decentralized voting application built with React, Ethers.js, and a Solidity smart contract. BlueVotes allows users to create proposals and vote securely on the blockchain, with a beautiful, responsive UI.
 
-Currently, two official plugins are available:
+## Features
+- Create new proposals (polls) via a modal form
+- View all open proposals in a clean card grid
+- Vote "Yes" or "No" on proposals directly from the UI
+- See live vote counts for each proposal
+- Connect wallet with MetaMask
+- Responsive, modern design
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- **Frontend:** React (Vite), Ethers.js
+- **Smart Contract:** Solidity (see `src/utils/Contract.sol`)
+- **Wallet:** MetaMask
+- **Styling:** Inline styles, SF Pro font
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+- Node.js (v16+ recommended)
+- npm or yarn
+- MetaMask browser extension
+- Access to an Ethereum testnet (e.g., Goerli)
+
+### Installation
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/dao-voting-app.git
+   cd dao-voting-app/front/dao-voting-app
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. **Configure the Smart Contract:**
+   - Deploy the Solidity contract (`src/utils/Contract.sol`) to your preferred Ethereum testnet (e.g., using Remix or Hardhat).
+   - Copy the deployed contract address and update it in `src/utils/eth.js`:
+     ```js
+     const contractAddress = "YOUR_DEPLOYED_CONTRACT_ADDRESS";
+     ```
+   - If you change the contract, update the ABI in `src/assets/voting.json`.
+
+4. **Run the app locally:**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+   The app will be available at [http://localhost:5173](http://localhost:5173).
+
+## Usage
+- Connect your MetaMask wallet.
+- Click "Create poll" to open the proposal modal and submit a new proposal.
+- View all open proposals as cards.
+- Vote "Yes" or "No" on any proposal. The vote count updates live after your transaction is confirmed.
+- Only open proposals are shown. Closed proposals are hidden.
+```
+
+
+---
+
+**YourVotes** — Your voice, on-chain.

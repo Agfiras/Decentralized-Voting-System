@@ -14,7 +14,7 @@ const Header = ({ onConnect, account }) => (
     boxShadow: '0 2px 24px rgba(0,0,0,0.12)',
   }}>
     <span style={{ fontWeight: 800, fontSize: 28, color: '#374bdf', letterSpacing: 1 }}>
-      Blue<span style={{ color: '#11ab68' }}>Votes</span>
+      Your<span style={{ color: '#11ab68' }}>Votes</span>
     </span>
     {account ? (
       <span style={{ background: '#353945', color: '#fff', padding: '8px 18px', borderRadius: 8, fontSize: 16, fontWeight: 500 }}>{account.slice(0, 6)}...{account.slice(-4)}</span>
