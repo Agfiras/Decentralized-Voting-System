@@ -58,9 +58,3 @@ A modern, decentralized voting application built with React, Ethers.js, and a So
 - View all open proposals as cards.
 - Vote "Yes" or "No" on any proposal. The vote count updates live after your transaction is confirmed.
 - Only open proposals are shown. Closed proposals are hidden.
-```
-
-
----
-
-**YourVotes** — Your voice, on-chain.
