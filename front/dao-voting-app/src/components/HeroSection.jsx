@@ -1,4 +1,5 @@
 import React from 'react';
+import './HeroSection.css';
 
 const HeroSection = ({ onCreatePoll }) => (
   <section style={{
@@ -17,20 +18,12 @@ const HeroSection = ({ onCreatePoll }) => (
     </p>
     <button
       onClick={onCreatePoll}
+      className="squishy squishy-classic"
       style={{
-        background: '#fff',
-        color: '#181a20',
-        border: 'none',
-        borderRadius: 32,
-        padding: '16px 38px',
-        fontWeight: 700,
-        fontSize: 20,
-        boxShadow: '0 2px 12px rgba(0,0,0,0.10)',
-        cursor: 'pointer',
         marginBottom: 24,
       }}
     >
-      Create poll
+      <span style={{ color: '#374bdf' }}>Create</span> <span style={{ color: '#11ab68' }}>poll</span>
     </button>
   </section>
 );

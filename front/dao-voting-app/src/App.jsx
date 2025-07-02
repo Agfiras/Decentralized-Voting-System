@@ -23,6 +23,7 @@ function App() {
   const [colorPhase, setColorPhase] = useState(0);
   const [showProposalModal, setShowProposalModal] = useState(false);
   const [votingId, setVotingId] = useState(null);
+  const [modalHovered, setModalHovered] = useState(false);
 
   // Animate the color of 'Matters' between green and blue
   useEffect(() => {
@@ -54,6 +55,23 @@ function App() {
       setError('MetaMask not detected');
     }
   };
+
+  // Check for existing wallet connection on page load
+  useEffect(() => {
+    const checkWalletConnection = async () => {
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+          if (accounts.length > 0) {
+            setAccount(accounts[0]);
+          }
+        } catch (err) {
+          console.log('Error checking wallet connection:', err);
+        }
+      }
+    };
+    checkWalletConnection();
+  }, []);
 
   // Fetch proposals on mount and when account changes
   useEffect(() => {
@@ -119,7 +137,9 @@ function App() {
     <div
       style={{
         minHeight: '100vh',
-        minWidth: '100vw',
+        width: '100%',
+        maxWidth: '100vw',
+        overflowX: 'hidden',
         background: 'radial-gradient(ellipse at top left, #23262f 60%, #181a20 100%)',
         display: 'flex',
         flexDirection: 'column',
@@ -146,13 +166,13 @@ function App() {
               gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
               columnGap: 32,
               rowGap: 24,
-              marginLeft: 60,
               justifyContent: 'center',
+              justifyItems: 'center',
+              width: '100%',
             }}>
               {proposals.map((proposal) => (
                 <VotingCard
                   key={proposal.id}
-                  image={'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80'}
                   title={proposal.description}
                   forVotes={proposal.forVotes}
                   againstVotes={proposal.againstVotes}
@@ -165,6 +185,7 @@ function App() {
           )}
         </section>
       </div>
+      <Footer />
       {showProposalModal && (
         <div style={{
           position: 'fixed',
@@ -178,7 +199,23 @@ function App() {
           justifyContent: 'center',
           zIndex: 1000,
         }}>
-          <div style={{ background: '#23262f', borderRadius: 16, padding: 32, minWidth: 340, boxShadow: '0 2px 24px rgba(0,0,0,0.18)', position: 'relative' }}>
+          <div 
+            style={{ 
+              background: '#23262f', 
+              borderRadius: 16, 
+              padding: 32, 
+              minWidth: 340, 
+              boxShadow: modalHovered 
+                ? '0 8px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(55, 75, 223, 0.2)' 
+                : '0 2px 24px rgba(0,0,0,0.18)', 
+              position: 'relative',
+              transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              transform: modalHovered ? 'scale(1.05) translateY(-8px)' : 'scale(1) translateY(0)',
+              cursor: 'default'
+            }}
+            onMouseEnter={() => setModalHovered(true)}
+            onMouseLeave={() => setModalHovered(false)}
+          >
             <button onClick={() => setShowProposalModal(false)} style={{ position: 'absolute', top: 12, right: 16, background: 'none', border: 'none', color: '#fff', fontSize: 22, cursor: 'pointer' }}>&times;</button>
             <h2 style={{ color: '#fff', fontWeight: 700, fontSize: 22, marginBottom: 18 }}>Create Proposal</h2>
             <ProposalForm onSubmit={async (data) => {
@@ -211,4 +248,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

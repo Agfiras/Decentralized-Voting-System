@@ -17,15 +17,28 @@ const Header = ({ onConnect, account }) => (
       Your<span style={{ color: '#11ab68' }}>Votes</span>
     </span>
     {account ? (
-      <span style={{ background: '#353945', color: '#fff', padding: '8px 18px', borderRadius: 8, fontSize: 16, fontWeight: 500 }}>{account.slice(0, 6)}...{account.slice(-4)}</span>
+      <span style={{ 
+        background: '#353945',
+        color: '#ffffff', 
+        padding: '8px 18px', 
+        borderRadius: 18, 
+        fontSize: 16, 
+        border: '2px solid rgba(34, 160, 107, 1)',
+        fontWeight: 500,
+        display: 'inline-block',
+        minWidth: '120px',
+        textAlign: 'center'
+      }}>
+        {account.slice(0, 6)}...{account.slice(-4)}
+      </span>
     ) : (
       <button
         onClick={onConnect}
         style={{
-          background: 'linear-gradient(90deg, #3772ff 0%, #4f8cff 100%)',
+          background: 'linear-gradient(90deg, #22a06b 0%, #374bdf 100%)',
           color: '#fff',
           border: 'none',
-          borderRadius: 12,
+          borderRadius: 18,
           padding: '10px 28px',
           fontWeight: 700,
           fontSize: 18,

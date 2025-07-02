@@ -47,10 +47,11 @@ button {
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.4s;
 }
 button:hover {
   background: #444;
+  transition: 0.4s;
 }
 
 input, select, textarea {
