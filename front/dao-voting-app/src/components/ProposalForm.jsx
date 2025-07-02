@@ -45,7 +45,7 @@ const ProposalForm = ({ onSubmit }) => {
                 width: 'auto',
                 alignSelf: 'center'
             }}>
-                Create Proposal
+                Publish Proposal
             </button>
         </form>
     );
